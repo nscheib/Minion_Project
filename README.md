@@ -15,3 +15,13 @@ Programm mit folgenden Funktionen:
 - Die Wahl ist zu ende, wenn kein Minion mehr zur Auswahl steht.
 
 - Ausgabe der Anzahl an Minions _(Spieler und Computer)_
+
+
+
+
+# Ein paar Anweisungen zur Benutzung von Git / Github
+
+Bitte nur auf dem Branch 'develop' arbeiten, auf 'master' sollten nur funktionierende fertige Versionen des Projekts zu finden sein.
+
+
+... to be continued ...
