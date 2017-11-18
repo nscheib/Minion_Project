@@ -24,5 +24,6 @@ public class MinionProject {
 
     // bla bla bla bla bla bla bla bla bla
 
+    // so, diese Änderung siehst du ja wohl mal jetzt
 }
 
