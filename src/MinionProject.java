@@ -1,7 +1,8 @@
 /*  Import  */
 import java.util.*;
 
-
+// Test: Die Welt geht unter:
+System.out.println("Die Welt geht unter!");
 
 public class MinionProject {
 
