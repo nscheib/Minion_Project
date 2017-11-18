@@ -1,7 +1,7 @@
 /*  Import  */
 import java.util.*;
 
-//Test ZWEI: Commit und push über IntelliJ
+
 
 public class MinionProject {
 
