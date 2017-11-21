@@ -11,56 +11,59 @@ public class MinionProject {
 
         // Variablen
         int norbert;
+        int MinionPosition;
         int auslosungDesBeginners;
-        int auslosungDesSpielers;
-        int spielerMinionWahlAnzahl;
-        char spielerMinionWahlSeite;
+        int minionWahlAnzahl;
+        char minionWahlSeite;
         int auswahlDesComputers;
+        int minionsRechts;
+        int minionsLinks;
+
 
         // Befehl für Scanner 'hans'
         Scanner hans = new Scanner(System.in);
 
 
-        // Random Platzierung von Norbert zwischen 2 und 10. Dargestellt als O
-        norbert = (int)(Math.random() * 8) + 2;
+        // Random Platzierung von Norbert zwischen 1 und 11.
+        norbert = (int)(Math.random() * 10) + 1;
 
 
         // Auslosung, ob Spieler oder Computer startet
-        System.out.println("Um zu ermitteln, ob Sie oder der Computer beginnt, wählen Sie zwischen der Zahl 1 und 2 und geben Sie diese ein:");
         auslosungDesBeginners = (int)(Math.random() * 2+1);
-        auslosungDesSpielers = hans.nextInt();
-        // Test der Random-Funktion
-        System.out.println("Test: RandomFunktion = " + auslosungDesBeginners);
+        if (auslosungDesBeginners == 1){
+            System.out.println("Der Computer fängt an.");
+        }else {
+            System.out.println("Du fängst an.");
+        }
 
 
 //------??????----------------------------------------------------------------------------------------------------------------------------------------------
 
-        if (auslosungDesSpielers == auslosungDesBeginners || auslosungDesSpielers <= auslosungDesBeginners ){
+        // Ausgabe für Position Minion und Norbert
+//        System.out.println("Norbert steht an Stelle: " + norbert);
+//        for (int i=1; i<=11; i++) {
+//                if (i == norbert) {
+//                    System.out.print(" O ");
+//                } else {
+//                    System.out.print(" M ");
+//                }
+//        }
+//        System.out.println("");
 
-            // Anweisung für Spieler / Eingabe des Spielers
-            System.out.println("Wählen Sie einen, zwei oder drei Minions von der linken oder rechten Seite ausgehend aus.");
-            System.out.println("Geben Sie die Anzahl der Minions an: ");
-            spielerMinionWahlAnzahl = hans.nextInt();
-            System.out.println("Von welcher Seite aus soll gezählt werden? Geben Sie für rechts ein r und für links ein l ein: ");
-            spielerMinionWahlSeite = hans.next().charAt(0);
+        for(int i=1; i<norbert; i++) {
 
-        }else{
+        }
 
-            //Computer beginnt und wählt eine zufällige Anzahl an Minions.
-            System.out.println("Der Computer wählt: ");
-            auswahlDesComputers =(int)(Math.random()*3+1);
+        //Abfrage von Minion Anzahl und Seitenbeginn
+        System.out.println("Von welcher Seite möchten Sie wählen? Rechts(r) oder Links (l)");
+        minionWahlSeite = hans.next().charAt(0);
 
-        }/*else if(auslosungDesSpielers >= 2) {
+        System.out.println("Wie viele Minions möchten Sie wählen?");
+        minionWahlAnzahl = hans.nextInt();
 
-            //return und frage erneut nach einer Zahl zwischen 1 und 2
-            return;
+        if (minionWahlSeite){
 
-        }*/
 //------??????----------------------------------------------------------------------------------------------------------------------------------------------
-
-        System.out.println("Test: hier steht Hubert: " + norbert);
-
-
     }
 
 }
