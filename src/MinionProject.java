@@ -10,7 +10,7 @@ public class MinionProject {
 
 
         // Variablen
-        int hubert;
+        int norbert;
         int auslosungDesBeginners;
         int auslosungDesSpielers;
         int spielerMinionWahlAnzahl;
@@ -21,8 +21,8 @@ public class MinionProject {
         Scanner hans = new Scanner(System.in);
 
 
-        // Random Platzierung von Hubert zwischen 2 und 9. Dargestellt als O
-        hubert = (int)(Math.random() * 7) + 2;
+        // Random Platzierung von Norbert zwischen 2 und 10. Dargestellt als O
+        norbert = (int)(Math.random() * 8) + 2;
 
 
         // Auslosung, ob Spieler oder Computer startet
@@ -34,7 +34,7 @@ public class MinionProject {
 
 
 //------??????----------------------------------------------------------------------------------------------------------------------------------------------
-        //
+
         if (auslosungDesSpielers == auslosungDesBeginners || auslosungDesSpielers <= auslosungDesBeginners ){
 
             // Anweisung für Spieler / Eingabe des Spielers
@@ -58,7 +58,7 @@ public class MinionProject {
         }*/
 //------??????----------------------------------------------------------------------------------------------------------------------------------------------
 
-        System.out.println("Test: hier steht Hubert: " + hubert);
+        System.out.println("Test: hier steht Hubert: " + norbert);
 
 
     }

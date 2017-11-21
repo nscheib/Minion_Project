@@ -1,20 +1,24 @@
 # Minion_Project
 
 Programm mit folgenden Funktionen:
+- 10 Minions und 1 Norbert
+- Random Position von N
+- Random Beginner Pc/Spieler
+- Anzeige von N. Position
+- Anzeige wer beginnt
 
-- Player vs. Computer _(Auswahl erfolgt abwechselnd)(Beginner wird random ermittelt)_
+Schleife:
+- Abfrage ob Spieler oder Pc dran ist
+- Frage: Anzahl der Minions 1-3
+- Frage: Von links oder rechts
+- Anzahl/Seite von Minions abziehen
+- Anzeige der restlichen Minions
+- Prüfen ob Norbert gewählt wurde
+    wenn ja: Spiel verloren
+        If Spieler/Computer verloren
+    wenn nein: schleife neu
+    
 
-- Auswahl von 1, 2 oder 3 Minions _(Ausgabe Minion: M) (Wahl von rechts oder links)_
-
-- Zufällige Anordnung von Norbert innerhalb der Minions _(Ausgabe Norbert: O) (außer an den äußeren Stellen)_
-
-- Es muss mindestens ein Minion gewählt werden _(selbst wenn der letzte Norbert ist)_
-
-- Computer agiert bei der Wahl zufällig _(?)_
-
-- Die Wahl ist zu ende, wenn kein Minion mehr zur Auswahl steht.
-
-- Ausgabe der Anzahl an Minions _(Spieler und Computer)_
 
 
 
