@@ -2,7 +2,7 @@
 import java.util.*;
 // Import //
 
-
+// Branch: Nick
 public class MinionProject {
 
 
@@ -50,7 +50,7 @@ public class MinionProject {
 //        }
 //        System.out.println("");
 
-        for(int i=1; i<norbert; i++) {
+        if () {
 
         }
 
