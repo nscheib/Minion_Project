@@ -2,7 +2,7 @@
 import java.util.*;
 // Import //
 
-// Branch: Nick
+
 public class MinionProject {
 
 
@@ -11,14 +11,19 @@ public class MinionProject {
 
         // Variablen
         int norbert;
+
         int MinionPosition;
+
         int auslosungDesBeginners;
+
         int minionWahlAnzahl;
         char minionWahlSeite;
+
         int auswahlDesComputers;
+        int anzahlMinionDesComputers;
+
         int minionsRechts;
         int minionsLinks;
-
 
         // Befehl für Scanner 'hans'
         Scanner hans = new Scanner(System.in);
@@ -37,6 +42,7 @@ public class MinionProject {
         }
 
 
+
 //------??????----------------------------------------------------------------------------------------------------------------------------------------------
 
         // Ausgabe für Position Minion und Norbert
@@ -50,9 +56,38 @@ public class MinionProject {
 //        }
 //        System.out.println("");
 
-        if () {
+        //minionsLinks = norbert <
+        while (norbert != 0);{
+            if(norbert == norbert){
+                System.out.print(" O ");
+            }else if (minionsLinks == minionsLinks && minionsRechts == minionsRechts){
+                System.out.print(" M ");
+            }else if (minionsLinks != minionsLinks && minionsRechts  != minionsRechts){
+                System.out.print(" - ");
+            }
 
+            //Abfrage von welcher Seiten begonnen wird
+           if(minionWahlSeite != 'r' || minionWahlSeite != 'l' && minionWahlAnzahl <= 3) {
+                System.out.println("Von welcher Seite möchten Sie wählen? Rechts(r) oder Links (l)");
+                minionWahlSeite = hans.next().charAt(0);
+
+                if (minionWahlSeite != 'r' || minionWahlSeite != 'l') {
+                    System.out.println("Geben Sie für Rechts 'r' oder für Links 'l' ein!");
+                    return;
+                } else {
+                    System.out.println("Wie viele Minions möchten Sie wählen?");
+                    minionWahlAnzahl = hans.nextInt();
+                    if (minionWahlAnzahl > 3) {
+                        System.out.println("Bitte geben Sie eine Zahl zwischen 1 und 3 an!");
+                        return;
+                    } else {
+                        System.out.println("Test");
+                    }
+
+                }
+            }
         }
+
 
         //Abfrage von Minion Anzahl und Seitenbeginn
         System.out.println("Von welcher Seite möchten Sie wählen? Rechts(r) oder Links (l)");
@@ -61,7 +96,6 @@ public class MinionProject {
         System.out.println("Wie viele Minions möchten Sie wählen?");
         minionWahlAnzahl = hans.nextInt();
 
-        if (minionWahlSeite){
 
 //------??????----------------------------------------------------------------------------------------------------------------------------------------------
     }
