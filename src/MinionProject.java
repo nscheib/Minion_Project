@@ -1,203 +1,335 @@
-/*  Import  */
 import java.util.*;
-/*/ Import /*/
 
-//------ CLASS --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 public class MinionProject {
 
 
-
-//------ MainMethode --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    public static void main(String[]args){
+    public static void main(String[] args) {
 
 
-        //Variablen
-        int linkeSeite = ((int)(Math.random() * 11) + 1);
-        int rechteSeite = linkeSeite - 10;
+        // ------------------------------------------------------------------------------------------
+        // Variablen deklarieren
+        // ------------------------------------------------------------------------------------------
+
+        int anzahlMinions = 11;
+        int positionenVorNorbert;
+        int positionenHinterNorbert;
+        int norbert;
+        int auslosungBeginner;
+        int aktiverSpieler;
+        int computer;
+        int spieler;
         boolean gameover = false;
-        boolean player = false;
-        boolean neustart = false;
-
-        while (!neustart) {
-            // Spielstart: Um das Spiel zu Starten wird eine Eingabe benötigt, ist die Eingabe falsch, gibt es erneut eine abfrage
-            System.out.println(
-                    "#-#################################################################################################################-# \n" +
-                    "------------------------------------------------ PRESS 'n' TO START ------------------------------------------------- \n" +
-                    "#-#################################################################################################################-# \n"
-            );
+        char seitenWahl;
+        int computerSeitenWahl;
+        int anzahlGewaehlteMinions;
+        int computerAnzahlGewaehlteMinions;
 
 
-            // Ruft die Methode ab, für die Eingabe und Abfrage, ob das Spiel gestarten werden soll
-            spielStartMethode();
-            while (!gameover) {
+        // ------------------------------------------------------------------------------------------
+        // Norbert zufällige Position zuweisen
+        // ------------------------------------------------------------------------------------------
 
-                //printMethode();
-                if (player) {
-                    System.out.println("Von welcher Seite (links 'l' oder rechts 'r') möchtest du deine Minions wählen?.");
-                    eingabeEinsMethode();
-                    System.out.println("Wie viele Minions möchtest du wählen, einen, zwei oder drei?");
-                    eingabeZweiMethode();
+        norbert = ((int) (Math.random() * anzahlMinions) + 1);
+        System.out.println("\nNorberts Position: " + norbert);
 
-                    System.out.println("Sie haben die " + "" + " Seite und " + "" + " Minions gewählt.");
+        positionenVorNorbert = norbert - 1;
+        positionenHinterNorbert = anzahlMinions - norbert;
 
-                    player = true;
-                } else {
-                    System.out.println("Der Computer ist am Zug.");
-                    int computerAnzahl = ((int) (Math.random() * 3) + 1);
-                    int computerSeite = ((int) (Math.random() * 1) + 1);
+        System.out.println("Positionen vor Norbert: " + positionenVorNorbert);
+        System.out.println("Positionen hinter Norbert: " + positionenHinterNorbert + "\n");
 
-                    if (linkeSeite > 0 && linkeSeite >= 3) {
-                        linkeSeite = computerAnzahl - linkeSeite;
-                        System.out.println("Der Computer nimmt " + computerAnzahl + " Minion von der linken Seite");
-                    } else if (rechteSeite > 0 && rechteSeite >= 3) {
-                        rechteSeite = computerAnzahl - rechteSeite;
-                        System.out.println("Der Computer nimmt " + computerAnzahl + " Minion von der rechten Seite");
+
+        // Positionen der Minions und von Norbert "graphisch" darstellen
+
+        for (int i = 1; i <= positionenVorNorbert; i++) {
+            System.out.print("M ");
+        }
+
+        System.out.print("O ");
+
+        for (int i = 1; i <= positionenHinterNorbert; i++) {
+            System.out.print("M ");
+        }
+
+
+        // ------------------------------------------------------------------------------------------
+        // Auslosung, wer das Spiel beginnt
+        // ------------------------------------------------------------------------------------------
+
+        auslosungBeginner = ((int) (Math.random() * 2) + 1);
+
+        spieler = 1;
+        computer = 2;
+
+        if (auslosungBeginner == spieler) {
+
+            aktiverSpieler = spieler;
+            System.out.println("\n\n" + "Du fängst an!\n");
+
+        } else {
+
+            aktiverSpieler = computer;
+            System.out.print("\n\n" + "Der Computer fängt an!\n");
+
+        }
+
+
+        // ------------------------------------------------------------------------------------------
+        // Spiel-Schleife: Spieler wählen abwechselnd 1-3 Minions ins Team, bis Norbert gewählt wird.
+        // ------------------------------------------------------------------------------------------
+
+
+        while (!gameover) {
+
+
+            // ------------------------------------------------------------------------------------------
+            // Wenn Spieler = aktiver Spieler:
+            // ------------------------------------------------------------------------------------------
+
+            if (aktiverSpieler == spieler ) {
+
+                // Seite wählen (rechts oder links)
+
+                Scanner scanner = new Scanner(System.in);
+
+                do {
+                    System.out.print("\nVon welcher Seite möchtest du deine Minions wählen? \nGib 'l' für links oder 'r' für rechts ein: ");
+                    seitenWahl = scanner.next().charAt(0);
+                } while (seitenWahl != 'r' && seitenWahl != 'l');
+
+
+                // Anzahl der Minions wählen
+
+                do {
+                    System.out.print("\nWie viele Minions möchtest du wählen? \nGib 1, 2 oder 3 ein: ");
+                    anzahlGewaehlteMinions = scanner.nextInt();
+                } while (anzahlGewaehlteMinions > 3 || anzahlGewaehlteMinions < 1);
+
+
+
+                // Positionen der restlichen Minions darstellen
+
+                if (seitenWahl == 'l') {
+
+                    // Gewählte Minions (als Strich (-) dargestellt)
+
+                    for(int i = 1; i <= anzahlGewaehlteMinions; i++) {
+                        System.out.print("- ");
                     }
-                    //printMethode();
-                    player = false;
+
+                    positionenVorNorbert = positionenVorNorbert - anzahlGewaehlteMinions;   // neuer Wert für positionenVorNorbert setzen
+
+                    // restliche Minions vor Norbert
+
+                    for(int i = 1; i <= positionenVorNorbert; i++) {
+                        System.out.print("M ");
+                    }
+
+                    // Norbert (falls noch da)
+
+                    if (norbert <= anzahlGewaehlteMinions) {
+                        //System.out.println("Du hast verloren, denn du hast Norbert in dein Team gewählt!");
+                        gameover = true;
+                        break;
+                    } else {
+                        System.out.print("O ");
+                    }
+
+                    // Minions hinter Norbert
+
+                    for (int i = 1; i <= positionenHinterNorbert; i++) {
+                        System.out.print("M ");
+                    }
+
+
+                } else {
+
+                    // Minions vor Norbert
+
+                    for (int i = 1; i <= positionenVorNorbert; i++) {
+                        System.out.print("M ");
+                    }
+
+                    // Norbert (falls noch da)
+
+                    if (norbert >= anzahlMinions - anzahlGewaehlteMinions) {
+                        System.out.println("\nDu hast verloren, denn du hast Norbert in dein Team gewählt!");
+                    } else {
+                        System.out.print("O ");
+                    }
+
+                    positionenHinterNorbert = positionenHinterNorbert - anzahlGewaehlteMinions;     // neuer Wert für positionenHinterNorbert setzen
+
+                    // restliche Minions hinter Norbert
+
+                    for(int i = 1; i <= positionenHinterNorbert; i++) {
+                        System.out.print("M ");
+                    }
+
+                    // Gewählte Minions (als Strich (-) dargestellt)
+
+                    for(int i = 1; i <= anzahlGewaehlteMinions; i++) {
+                        System.out.print("- ");
+                    }
+
                 }
 
-                if (linkeSeite == 0 && rechteSeite == 0) {
-                    gameover = true;
-                }
-            }
 
-            if (player) {
-                System.out.println("Du hast gewonnen! :)");
+            // ------------------------------------------------------------------------------------------
+            // Wenn Computer = aktiver Spieler:
+            // ------------------------------------------------------------------------------------------
+
             } else {
-                System.out.println("Der Computer hat gewonnen! :(");
+
+                // Seite (rechts oder links) und Anzahl der Minions zufällig wählen
+
+                computerSeitenWahl = ((int) (Math.random() * 2) + 1);
+                computerAnzahlGewaehlteMinions = ((int) (Math.random() * 3) + 1);
+
+                if (computerSeitenWahl == 1) {
+                    seitenWahl = 'l';
+                } else {
+                    seitenWahl = 'r';
+                }
+
+                if (computerAnzahlGewaehlteMinions == 1) {
+                    anzahlGewaehlteMinions = 1;
+                } else if (computerAnzahlGewaehlteMinions == 2) {
+                    anzahlGewaehlteMinions = 2;
+                } else {
+                    anzahlGewaehlteMinions = 3;
+                }
+
+                System.out.println("\nDer Computer hat " + anzahlGewaehlteMinions + " Minions von " + seitenWahl + " gewählt.");
+
+
+                // Positionen der restlichen Minions darstellen
+
+                if (seitenWahl == 'l') {
+
+                    // Gewählte Minions (als Strich (-) dargestellt)
+
+                    for(int i = 1; i <= anzahlGewaehlteMinions; i++) {
+                        System.out.print("- ");
+                    }
+
+                    positionenVorNorbert = positionenVorNorbert - anzahlGewaehlteMinions;   // neuer Wert für positionenVorNorbert setzen
+
+                    // restliche Minions vor Norbert
+
+                    for(int i = 1; i <= positionenVorNorbert; i++) {
+                        System.out.print("M ");
+                    }
+
+                    // Norbert (falls noch da)
+
+                    if (norbert <= anzahlGewaehlteMinions) {
+                        System.out.println("O ");
+                    } else {
+                        System.out.print("");
+                    }
+
+                    // Minions hinter Norbert
+
+                    for (int i = 1; i <= positionenHinterNorbert; i++) {
+                        System.out.print("M ");
+                    }
+
+
+                } else {
+
+                    // Minions vor Norbert
+
+                    for (int i = 1; i <= positionenVorNorbert; i++) {
+                        System.out.print("M ");
+                    }
+
+                    // Norbert (falls noch da)
+
+                    if (norbert > (anzahlMinions - anzahlGewaehlteMinions)) {
+                        System.out.print("O ");
+                    } else {
+                        System.out.print("");
+                    }
+
+                    positionenHinterNorbert = positionenHinterNorbert - anzahlGewaehlteMinions;     // neuer Wert für positionenHinterNorbert setzen
+
+                    // restliche Minions hinter Norbert
+
+                    for(int i = 1; i <= positionenHinterNorbert; i++) {
+                        System.out.print("M ");
+                    }
+
+                    // Gewählte Minions (als Strich (-) dargestellt)
+
+                    for(int i = 1; i <= anzahlGewaehlteMinions; i++) {
+                        System.out.print("- ");
+                    }
+
+                }
+
+
             }
 
-            if(player){
-                System.out.println("Wollen Sie das Spiel neustarten geben Sie 'n' ein!");
-                spielStartMethode();
-                neustart = true;
-            }else {
-                System.out.println("Das Spiel wird beendet!" +
-                        "#-#################################################################################################################-# \n" +
-                        "------------------------------------------------------- ENDE -------------------------------------------------------- \n" +
-                        "#-#################################################################################################################-# \n"
-                );
+
+            // ------------------------------------------------------------------------------------------
+            // Checken, ob Gameover, ansonsten Spielerwechsel
+            // ------------------------------------------------------------------------------------------
+
+            if (aktiverSpieler == computer) {
+
+                if (seitenWahl == 'l' && norbert <= anzahlGewaehlteMinions) {
+
+                    System.out.println("Der Computer hat verloren, denn er hat Norbert in sein Team gewaehlt.");
+                    gameover = true;
+
+                } else if (seitenWahl == 'r' && norbert >= (anzahlMinions - anzahlGewaehlteMinions)) {
+
+                    System.out.println("Der Computer hat verloren, denn er hat Norbert in sein Team gewaehlt.");
+                    gameover = true;
+
+                }
+
+            } else {
+
+                if (seitenWahl == 'l' && norbert <= anzahlGewaehlteMinions) {
+
+                    System.out.println("Du hast verloren, denn du hast Norbert in dein Team gewaehlt.");
+                    gameover = true;
+
+                } else if (seitenWahl == 'r' && norbert >= (anzahlMinions - anzahlGewaehlteMinions)) {
+
+                    System.out.println("Du hast verloren, denn du hast Norbert in dein Team gewaehlt.");
+                    gameover = true;
+
+                }
 
             }
 
 
-        }
+            // ------------------------------------------------------------------------------------------
+            // Spielerwechsel
+            // ------------------------------------------------------------------------------------------
 
-    }
-//------// MainMethode \\--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+            if (aktiverSpieler == spieler) {
 
+                aktiverSpieler = computer;
 
+            } else if (aktiverSpieler == computer) {
 
+                aktiverSpieler = spieler;
 
-
-// --- Methode fragt die Eingabe für den Start des Spiels ab. -------------------------------------------------------------------------------------------------------------------------------------------
-    static boolean spielStartMethode(){
-
-        Scanner hans = new Scanner(System.in);  // Fügt die Methode Scanner hinzu, um eine Eingabe machen zu können
-        boolean start = false;                  // Variable um zu sagen ob die Eingabe zutrifft(true) oder falsch(false) ist
-
-        System.out.print("Eingabe: ");          // Aufforderung für die Eingabe
-
-        // Die Schleife überprüft die Eingabe und bei richtiger Eingabe wird ein Text für den Start und die Spielregeln angezeigt
-        while(!start) {
-            if (hans.next().equals("n")) {
-                System.out.println(
-                        "########################################################################################################################### \n " +
-                        "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # \n " +
-                        "# # #                                                                                                                 # # # \n " +
-                        "# # #     #########            ####         #####       ##         ####         #####       ##         ####           # # # \n " +
-                        "# # #     ###     ##          ######        ### ##      ##        ######        ### ##      ##        ######          # # # \n " +
-                        "# # #     ###    ###         ###   ##       ###  ##     ##       ###   ##       ###  ##     ##       ###   ##         # # # \n " +
-                        "# # #     #########         ###     ##      ###   ##    ##      ###     ##      ###   ##    ##      ###     ##        # # # \n " +
-                        "# # #     ###      ##      ####      ##     ###    ##   ##     ####      ##     ###    ##   ##     ####      ##       # # # \n " +
-                        "# # #     ###      ###    ### # # # # ##    ###     ##  ##    ### # # # # ##    ###     ##  ##    ### # # # # ##      # # # \n " +
-                        "# # #     ###     ####   ####         ###   ###      ## ##   ####         ###   ###      ## ##   ####         ###     # # # \n " +
-                        "# # #     ###########   ####           ###  ###       ####  ####           ###  ###       ####  ####           ###    # # # \n " +
-                        "# # #                                                                                                                 # # # \n " +
-                        "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # \n " +
-                        "########################################################################################################################### \n " +
-                        "                                                                                                                            \n " +
-                        "---------------------------------------------------------- RULES ---------------------------------------------------------- \n " +
-                        "                                                                                                                            \n " +
-                        "Bitte lese dir die Spieleanleitung genau durch. Das Spiel 'Banana' ist ein einfaches Strategisches Spiel, bei dem es darum  \n " +
-                        "geht ein Team aus Minions zu wählen. Einer der Minions ist Norbert, er ist derjenige den keiner im seinem Team haben        \n " +
-                        "möchte, denn mit Norbert ist die Niederlage sicher!                                                                         \n " +
-                        "                                                                                                                            \n " +
-                        "Zu Beginn wird Zufällig ermittelt wer anfängt, Du oder der Computer. Bist du am Zug, wähle aus von welcher Seite du einen   \n " +
-                        "Minion möchtest und geben Sie dafür für rechts 'r' und für links 'l' ein. Danach wirst du aufgefordert die Anzahl der       \n " +
-                        "Minions anzugeben, welche du gern im Team hättest. Du kannst zwischen einem, zwei oder drei Minions wählen, aber nur von    \n " +
-                        "einer Seite aus!                                                                                                            \n " +
-                        "Wir wünsche dir viel Spaß, dein Banana-Team.                                                                                \n " +
-                        "                                                                                                                            \n " +
-                        "---------------------------------------------------------- RULES ---------------------------------------------------------- \n " );
-
-                start = true;
-            }else {
-                System.out.println("Geben Sie 'n' ein: ");
             }
-        }
-        return start;
-    }
+
+
+        } // while Spiel-Schleife
 
 
 
 
-/*/ --- Methode zum Anzeigen der Minions und Norbert --------------------------------------------------------------------------------------------------------------------
-    static int printMethode (linkeSeite,rechteSeite){
-        for (int i = 1; i <= linkeSeite; i++){ System.out.print(" M "); }
-        System.out.print(" O ");
-        for (int k = 1; k <= rechteSeite; k++){ System.out.print(" M "); }
-        return;
-    }
-*/
-
-
-
-// --- Methode zum abrufen welche Seite gewählt werden soll --------------------------------------------------------------------------------------------------------------------
-
-    public static boolean eingabeEinsMethode(){
-
-        Scanner hans = new Scanner(System.in);              // Fügt die Methode Scanner hinzu, um eine Eingabe machen zu können
-        boolean eingabeEins = false;                        // ist für die Seitenwahl definiert, von welcher Seite die Minions gewählt werden
-
-        System.out.print("Eingabe: ");                      // Aufforderung für die Eingabe
-
-        while (!eingabeEins){
-            if ( (hans.next().equals("r")) && (hans.next().equals("l")) ) {
-                eingabeEins = true;
-            }else{
-                System.out.print("Gebe für links 'l' und für rechts 'r' ein!");
-            }
-        }
-        return eingabeEins;
-    }
+    }  // main method
 
 
 
 
-// --- Methode zum prüfen der Eingabe für die Anzahl der Minions --------------------------------------------------------------------------------------------------------------------
-    public static int eingabeZweiMethode(){
-
-        Scanner hans = new Scanner(System.in);              // Fügt die Methode Scanner hinzu, um eine Eingabe machen zu können
-        int eingabeZwei = hans.nextInt();                   // ist für die Anzahl(eins,zwei oder drei) der Minions definiert, die gewählt werden sollen
-
-        System.out.print("Eingabe: ");                      // Aufforderung für die Eingabe
-
-        while (eingabeZwei > 3){
-
-            if (hans.nextInt() <= 3){
-                System.out.print("Eingabe: ");              // Aufforderung für die Eingabe
-            }else {
-                System.out.println("Bitte gebe eine Zahl zwischen 1 und 3 ein!");
-            }
-        }
-        return eingabeZwei;
-    }
-
-
-
-
-
-}
-//------/ CLASS \-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+} // class
