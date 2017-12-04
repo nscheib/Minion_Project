@@ -7,19 +7,29 @@ public class MinionProject {
 
 
 
-//------ MainMethode --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//------ MainMethode --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     public static void main(String[]args){
 
 
         //Variablen
-        int linkeSeite = ((int)(Math.random() * 11) + 1);
-        int rechteSeite = 11 - linkeSeite - 1;
-        boolean gameover = false;
-        boolean player = false;
-        boolean neustart = false;
+        int linkeSeite = ((int)(Math.random() * 11) + 1);                           //  Diese Variable "zeigt" eine zufällige Zahl an Minions an, die links neben Norbert stehen.
 
-        while (!neustart) {
-            // Spielstart: Um das Spiel zu Starten wird eine Eingabe benötigt, ist die Eingabe falsch, gibt es erneut eine abfrage
+        int rechteSeite = 11 - linkeSeite - 1;                                      //  Diese Variable "zeigt" eine zufällige Zahl an Minions an, die rechts neben norbert stehen. Es wird die Anzahl
+                                                                                    //  der linken Seite (die zufällig gewürfelt wird) genommen und von der maximalen Anzahl Minions abgezogen.
+                                                                                    //  Der Platz von Norbert wird ebenfalls abgezogen.
+
+        int linkeSeiteRest;                                                         //  Gibt die Anzahl der schon gewählen Minions für die linke Seite an
+        int rechteSeiteRest;                                                        //  Gibt die Anzahl der schon gewählen Minions für die rechte Seite an
+
+        boolean gameover = false;                                                   //  Setzt die Schleife auf false, sodass diese beginnt und erst mit der richtigen Eigenschaft wird diese beendet.
+        boolean player = false;                                                     //  Setzt den
+        boolean neustart = false;                                                   //  Dient der Abfrage, ob der Spieler das Spiel noch einmal spielen möchte
+
+        while (!neustart) {                                                         //  Schleife die einen Neustart des Spiels ermöglicht
+
+            gameover = false;                                                       //  Setzt die Schleife, nach einem Neustart, auf false zurück.
+
+            /** Spielstart: Um das Spiel zu Starten wird eine Eingabe benötigt, ist die Eingabe falsch, gibt es erneut eine Abfrage */
             System.out.println(
                     "#-#################################################################################################################-# \n" +
                     "------------------------------------------------ PRESS 'n' TO START ------------------------------------------------- \n" +
@@ -27,156 +37,66 @@ public class MinionProject {
             );
 
 
-            // Ruft die Methode ab, für die Eingabe und Abfrage, ob das Spiel gestarten werden soll
-            spielStartMethode();
+            spielStartMethode();                                                    //  Ruft die Methode ab, für die Eingabe und Abfrage, ob das Spiel gestarten werden soll
 
+            printMethode(rechteSeite, linkeSeite);
 
-            // Schleifenbegin
+            int randomBeginner = (int)(Math.random() * 1) + 1;
+            if (randomBeginner == 1){
+                player = true;
+                System.out.println("Du beginnst das Spiel!");
+            } else {
+                player = false;
+                System.out.println("Der Computer beginnt das Spiel");
+            }
+
+            /** Schleifenbegin */
             while (!gameover) {
 
-                //printMethode();
                 if (player) {
-                    spielerwaehlt(rechteSeite, linkeSeite);
-                    /*
-                    System.out.println("Von welcher Seite (links 'l' oder rechts 'r') möchtest du deine Minions wählen?.");
-                    eingabeEinsMethode();
-                    System.out.println("Wie viele Minions möchtest du wählen, einen, zwei oder drei?");
-                    eingabeZweiMethode();
-
-                    System.out.println("Sie haben die " + "" + " Seite und " + "" + " Minions gewählt.");
-                    */
+                    spielerwaehlt(rechteSeite, linkeSeite);                         //  spielerwaehlt ist eine methode die die Eingaben des Spielers aufnimmt und verarbeitet.
                     player = false;
+                    printMethode(rechteSeite, linkeSeite);                          //  PrintMethode zeigt die Minions als 'M' und Norbert als 'O' an.
                 } else {
                     System.out.println("Der Computer ist am Zug.");
                     computerWaehlt(rechteSeite, linkeSeite);
-                    /*
-                    if (linkeSeite > 0 && linkeSeite >= 3) {
-                        linkeSeite = computerAnzahl - linkeSeite;
-                        System.out.println("Der Computer nimmt " + computerAnzahl + " Minion von der linken Seite");
-                    } else if (rechteSeite > 0 && rechteSeite >= 3) {
-                        rechteSeite = computerAnzahl - rechteSeite;
-                        System.out.println("Der Computer nimmt " + computerAnzahl + " Minion von der rechten Seite");
-                    }
-                    */
-                    //printMethode();
+                    printMethode(rechteSeite, linkeSeite);
                     player = true;
                 }
-
-                if (linkeSeite == 0 && rechteSeite == 0) {
-                    gameover = true;
-                }
             }
 
-            if (player == true) {
-                System.out.println("Du hast gewonnen! :)");
-            } else {
+            if (linkeSeite == 0 && rechteSeite == 0 && player == true) {
+                System.out.println(" ");
                 System.out.println("Der Computer hat gewonnen! :(");
-            }
-
-            if(gameover == true){
-                System.out.println("Wollen Sie das Spiel neustarten geben Sie 'n' ein!");
-                spielStartMethode();
-                //neustart = true;
+                gameover = true;
             }else {
-                System.out.println("Das Spiel wird beendet!" +
-                        "#-#################################################################################################################-# \n" +
-                        "------------------------------------------------------- ENDE -------------------------------------------------------- \n" +
-                        "#-#################################################################################################################-# \n"
-                );
-
+                System.out.println(" ");
+                System.out.println("Du hast gewonnen! :)");
+                gameover = true;
             }
 
-
+            gameOverMethode(gameover);
         }
-
     }
+
 //------// MainMethode \\--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-public static void computerWaehlt(int rechts, int links) {          // Methode computerWaehlt, wählt eine Seite und die Anzahl der Minions zufällig und zieht diese von den Minions ab.
-
-    int computerAnzahl = ((int) (Math.random() * 3) + 1);           // Eine zufällige Zahl zwischen 1 und 3, für die Wahl an Minions.
-    int computerSeite = ((int) (Math.random() * 1) + 1);            // Eine zufällige Zahl zwischen 0 und 1. Die linke Seite = 0 und die rechte Seite = 1
-
-    if (computerSeite == 0 && computerAnzahl > links) {             //
-        computerWaehlt(links, rechts);
-    } else if (computerSeite == 1 && computerAnzahl > rechts) {
-        computerWaehlt(links, rechts);
-    } else {
-        if (computerSeite == 0) {
-            links =- computerAnzahl;
-        } else {
-            rechts =- computerAnzahl;
-        }
-        String seite = computerSeite == 0 ? "linken" : "rechten";
-        System.out.println("Der Computer nimmt " + computerAnzahl + " Minion von der " + seite + " Seite");
-    }
-}
 
 
 
-// --- Methode fragt die Eingabe für den Start des Spiels ab. -------------------------------------------------------------------------------------------------------------------------------------------
-    public static void spielerwaehlt(int rechteSeite, int linkeSeite){
-
-        char eingabeSeite = ' ';
-        char eingabeAnzahl = ' ';
-        boolean eingabeRichtig = false;
-
-        Scanner hans = new Scanner(System.in);
-
-        System.out.println("");
-
-        while (eingabeRichtig == false){
-            System.out.println("Welche Seite möchtest Du wählen? Gebe für links 'l' und für rechts 'r' ein.");
-            eingabeSeite = hans.next().charAt(0);
-            if (eingabeSeite == 'r' || eingabeSeite == 'l'){
-                eingabeRichtig = true;
-            }
-        }
-        eingabeRichtig = false;
-        while (eingabeRichtig == false){
-            System.out.println("Wie viele Minions wählst du in dein Team? Wähle zwischen einem, zwei oder drei Minions.");
-            eingabeAnzahl = hans.next().charAt(0);
-            try {
-                int zahlUmwandlung = Integer.parseInt(eingabeAnzahl + "");
-                if (zahlUmwandlung <= 3 && zahlUmwandlung > 0) {
-                    eingabeRichtig = true;
-                }
-            } catch (NumberFormatException e) {
-                continue;
-            }
-        }
-
-        if (eingabeSeite == 'r'){
-            rechteSeite =- eingabeAnzahl;
-        } else {
-            linkeSeite =- eingabeAnzahl;
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/** ___ Methode fragt die Eingabe für den Start des Spiels ab. ________________________________________________________________________________________________________________ */
     static boolean spielStartMethode(){
 
-        Scanner hans = new Scanner(System.in);  // Fügt die Methode Scanner hinzu, um eine Eingabe machen zu können
-        boolean start = false;                  // Variable um zu sagen ob die Eingabe zutrifft(true) oder falsch(false) ist
+        Scanner hans = new Scanner(System.in);                                      //  Methode Scanner wird abgerufen, um eine Eingabe in der Konsole zu ermöglichen
 
-        System.out.print("Eingabe: ");          // Aufforderung für die Eingabe
+        boolean start = false;                                                      //  Variable um zu sagen ob die Eingabe zutrifft(true) oder falsch(false) ist
 
-        // Die Schleife überprüft die Eingabe und bei richtiger Eingabe wird ein Text für den Start und die Spielregeln angezeigt
+        System.out.print("Eingabe: ");                                              //  Aufforderung für die Eingabe
+
+
+        /**  Die Schleife überprüft die Eingabe und bei richtiger Eingabe wird ein Text für den Start und die Spielregeln angezeigt */
         while(!start) {
-            if (hans.next().equals("n")) {
+            if (hans.next().equals("n")) {                                          //  Trifft die Eingabe n zu, geben den folgenden Text in der Konsole aus
                 System.out.println(
                         "########################################################################################################################### \n " +
                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # \n " +
@@ -207,9 +127,10 @@ public static void computerWaehlt(int rechts, int links) {          // Methode c
                         "                                                                                                                            \n " +
                         "---------------------------------------------------------- RULES ---------------------------------------------------------- \n " );
 
-                start = true;
+                System.out.println(" ");
+                start = true;                                                       //  Setze den Start auf richtig und beginne das Spiel
             }else {
-                System.out.println("Geben Sie 'n' ein: ");
+                System.out.println("Geben Sie 'n' ein: ");                          //  Falls der Spieler eine falsche Eingabe macht, wird erneut gefragt.
             }
         }
         return start;
@@ -218,62 +139,123 @@ public static void computerWaehlt(int rechts, int links) {          // Methode c
 
 
 
-/*/ --- Methode zum Anzeigen der Minions und Norbert --------------------------------------------------------------------------------------------------------------------
-    static int printMethode (linkeSeite,rechteSeite){
-        for (int i = 1; i <= linkeSeite; i++){ System.out.print(" M "); }
+/** --- Methode berechnet aus der Eingabe, die Seite(links oder Rechts) und der Anzahl an Minions(eins, zwei oder drei), des Spielers, wie viele Minions noch übrig sind. ------------------------------------------------------------------------------------------------------------------------- */
+
+    public static void spielerwaehlt(int rechteSeite, int linkeSeite){
+
+        char eingabeSeite = '0';                                                    //  ist als "leerer" Char definiert, um die Variable "eingabeZahl", von einem Char in ein int umzuwandeln
+        char eingabeAnzahl = '0';
+        boolean eingabeRichtig = false;                                             //  Wird benötigt, um die Schleife zu beenden
+
+        Scanner hans = new Scanner(System.in);                                      //  Methode Scanner wird abgerufen, um eine Eingabe in der Konsole zu ermöglichen
+
+        System.out.println("");                                                     //  Abstand zur folgenden Konsolenausgabe
+
+        // Schleife 1: Um die Seite zu wählen
+        while (eingabeRichtig == false){                                            //  Schleife, falls die Eingabe kein r oder l ist, wird erneut noch einer Eingabe gefragt
+            System.out.println("Welche Seite möchtest Du wählen? Gebe für links 'l' und für rechts 'r' ein.");
+
+            eingabeSeite = hans.next().charAt(0);                                   //  Konsolen Eingabe wird in Variable "eingabeSeite" gespeichert
+
+            if (eingabeSeite == 'r' || eingabeSeite == 'l'){                        //  Abfrage, ob die Eingabe r oder l zutrifft
+                eingabeRichtig = true;                                              //  Wenn die Eingabe zutrifft, beende die Schleife und gehe den Code weiter
+            }
+        }
+
+        eingabeRichtig = false;                                                     //  Reset der Aussage "Eingabe war richtig", um die Variable bei der nächsten Schleife noch einmal zu benutzen
+
+        // Schleife 2: Um die Anzahl der Minions zu wählen
+        while (eingabeRichtig == false){
+            System.out.println("Wie viele Minions wählst du in dein Team? Wähle zwischen einem, zwei oder drei Minions.");
+
+            eingabeAnzahl = hans.next().charAt(0);                                  //  Konsolen Eingabe wird in Variable "eingabeAnzahl" gespeichert
+
+            try {
+                int zahlUmwandlung = Integer.parseInt(eingabeAnzahl + "");       //  Da die Eingabe der Anzahl der Minions erst als Char angenommen wurde, um den ersten Schritt zu vereinfachen,
+                                                                                    //  wird dieses Char jetzt in ein Int umgewandelt, um mit diesem eine if Abfrage stellen zu können
+                if (zahlUmwandlung <= 3 && zahlUmwandlung > 0) {
+                    eingabeRichtig = true;
+                }
+            } catch (NumberFormatException e) {                                     //  Bei Eingabe eines Buchstaben, statt Zahl, wird die Fehlermeldung übersprungen und die Schleife fortgesetzt
+                continue;
+            }
+        }
+
+
+        // Brechnung der linken oder rechten Seite
+        if (eingabeSeite == 'r'){                                                   //  Wenn die Eingabe mit r übereinstimmt, berechne den Rest der rechten Minions
+            rechteSeite = rechteSeite - eingabeAnzahl;
+        } else {                                                                    //  ansonsten berechne den Rest der linken Minions
+            linkeSeite = rechteSeite - eingabeAnzahl;
+        }
+    }
+
+
+
+/** ___ Methode berechnet aus der Eingabe, die Seite(links oder Rechts) und der Anzahl an
+ *  ___ Minions(eins, zwei oder drei), des Spielers, wie viele Minions noch übrig sind. ________________________________________________________________________________________________________________ */
+
+    public static void computerWaehlt(int rechts, int links) {                      //  Methode computerWaehlt, wählt eine Seite und die Anzahl der Minions zufällig und zieht diese von den Minions ab.
+
+        int computerAnzahl = ((int) (Math.random() * 3) + 1);                       //  Eine zufällige Zahl zwischen 1 und 3, für die Wahl an Minions.
+        int computerSeite = ((int) (Math.random() * 1) + 1);                        //  Eine zufällige Zahl zwischen 0 und 1. Die linke Seite = 0 und die rechte Seite = 1
+
+        if (computerSeite == 0 && computerAnzahl > links) {
+            computerWaehlt(rechts, links);                                          //  rekursive Methode, die methode ruft sich solange SELBST auf bis die abbruch Bedingung erfüllt ist. Erst dann wird
+                                                                                    //  der Code fortgesetzt.
+        } else if (computerSeite == 1 && computerAnzahl > rechts) {
+            computerWaehlt(rechts, links);
+        } else {
+            if (computerSeite == 0) {
+                links = links - computerAnzahl;                                     //  Gibt die Anzahl der schon gewählen Minions für die rechte Seite an
+            } else {
+                rechts = rechts - computerAnzahl;
+            }
+            String seitenAusgabe = computerSeite == 0 ? "linken" : "rechten";
+            System.out.println("Der Computer nimmt " + computerAnzahl + " Minion von der " + seitenAusgabe + " Seite");
+        }
+
+    }
+
+
+
+
+/** ___ Methode zum Anzeigen der Minions und Norbert ________________________________________________________________________________________________________________ */
+    public static void printMethode (int linkeSeite, int rechteSeite){              //  Druck die Anzahl an Minions und Norbert in der Konsole aus
+        System.out.println(" ");
+        //for (int h = 1; h <= linkeSeiteRest; h++) { System.out.print(" - "); }
+        for (int i = 1; i <= linkeSeite; i++) { System.out.print(" M "); }
         System.out.print(" O ");
-        for (int k = 1; k <= rechteSeite; k++){ System.out.print(" M "); }
-        return;
+        for (int j = 1; j <= rechteSeite; j++) { System.out.print(" M "); }
+        //for (int k = 1; k <= rechteSeiteRest; k++) { System.out.print(" - "); }
+
+        System.out.println(" ");
+        System.out.println(" ");
     }
-*/
 
 
 
-// --- Methode zum abrufen welche Seite gewählt werden soll --------------------------------------------------------------------------------------------------------------------
+/** ___ Methode fragt ab, ob noch einmal gespielt werden soll _________________________________________________________________________________________________________ */
+    public static void gameOverMethode(boolean gameover) {                          //  Fragt den Spieler, ob er noch einmal Spielen oder das Programm beendet möchte
 
-    public static boolean eingabeEinsMethode(){
+        Scanner hans = new Scanner(System.in);
 
-        Scanner hans = new Scanner(System.in);                      // Fügt die Methode Scanner hinzu, um eine Eingabe machen zu können
-        boolean eingabeEins = false;                                // ist für die Seitenwahl definiert, von welcher Seite die Minions gewählt werden
-
-
-        System.out.print("Eingabe: ");                              // Aufforderung für die Eingabe
-
-        while (!eingabeEins){
-            if ( (hans.next().equals("r")) && (hans.next().equals("l")) ) {
-                eingabeEins = true;
-            }else{
-                System.out.print("Gebe für links 'l' und für rechts 'r' ein!");
+        if (gameover == true) {
+            System.out.println("Wollen Sie das Spiel neustarten geben Sie 'n' ein!");
+            char neustartEingabe = hans.next().charAt(0);
+            if (neustartEingabe == 'n') {                                           //  ist die Eingabe korrekt, wird gameover zurück gesetzt und das Spiel startet nocheinmal.
+                gameover = false;
+            } else {
+                System.out.println(
+                        "                                                                                                                      \n" +
+                                "#-#################################################################################################################-# \n" +
+                                "------------------------------------------------------- ENDE -------------------------------------------------------- \n" +
+                                "#-#################################################################################################################-# \n"
+                );
             }
         }
-        return eingabeEins;
     }
-
-
-
-
-// --- Methode zum prüfen der Eingabe für die Anzahl der Minions --------------------------------------------------------------------------------------------------------------------
-    public static int eingabeZweiMethode(){
-
-        Scanner hans = new Scanner(System.in);                      // Fügt die Methode Scanner hinzu, um eine Eingabe machen zu können
-        int eingabeZwei = hans.nextInt();                           // ist für die Anzahl(eins,zwei oder drei) der Minions definiert, die gewählt werden sollen
-
-        System.out.print("Eingabe: ");                              // Aufforderung für die Eingabe
-
-        while (eingabeZwei > 3){
-
-            if (hans.nextInt() <= 3){
-                System.out.print("Eingabe: ");                      // Aufforderung für die Eingabe
-            }else {
-                System.out.println("Bitte gebe eine Zahl zwischen 1 und 3 ein!");
-            }
-        }
-        return eingabeZwei;
-    }
-
-
-
 
 
 }
-//------/ CLASS \-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+/**------/ CLASS \------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
