@@ -113,7 +113,7 @@ public class MinionProject {
 
                     // Gewählte Minions (als Strich (-) dargestellt)
 
-                    for(int i = 1; i <= anzahlGewaehlteMinions; i++) {
+                    for (int i = 1; i <= anzahlGewaehlteMinions; i++) {
                         System.out.print("- ");
                     }
 
@@ -121,7 +121,7 @@ public class MinionProject {
 
                     // restliche Minions vor Norbert
 
-                    for(int i = 1; i <= positionenVorNorbert; i++) {
+                    for (int i = 1; i <= positionenVorNorbert; i++) {
                         System.out.print("M ");
                     }
 
@@ -162,13 +162,13 @@ public class MinionProject {
 
                     // restliche Minions hinter Norbert
 
-                    for(int i = 1; i <= positionenHinterNorbert; i++) {
+                    for (int i = 1; i <= positionenHinterNorbert; i++) {
                         System.out.print("M ");
                     }
 
                     // Gewählte Minions (als Strich (-) dargestellt)
 
-                    for(int i = 1; i <= anzahlGewaehlteMinions; i++) {
+                    for (int i = 1; i <= anzahlGewaehlteMinions; i++) {
                         System.out.print("- ");
                     }
 
@@ -256,13 +256,13 @@ public class MinionProject {
 
                     // restliche Minions hinter Norbert
 
-                    for(int i = 1; i <= positionenHinterNorbert; i++) {
+                    for (int i = 1; i <= positionenHinterNorbert; i++) {
                         System.out.print("M ");
                     }
 
                     // Gewählte Minions (als Strich (-) dargestellt)
 
-                    for(int i = 1; i <= anzahlGewaehlteMinions; i++) {
+                    for (int i = 1; i <= anzahlGewaehlteMinions; i++) {
                         System.out.print("- ");
                     }
 
