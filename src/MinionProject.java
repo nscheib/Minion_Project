@@ -236,7 +236,7 @@ public class MinionProject {
 
 
 /** ___ Methode fragt ab, ob noch einmal gespielt werden soll _________________________________________________________________________________________________________ */
-    public static void gameOverMethode(boolean gameover) {                          //  Fragt den Spieler, ob er noch einmal Spielen oder das Programm beendet möchte
+    public static void gameOverMethode(boolean gameover) {                          //  Fragt den Spieler, ob er noch einmal Spielen oder das Programm beendet möchte.
 
         Scanner hans = new Scanner(System.in);
 
