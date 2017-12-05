@@ -21,16 +21,19 @@ public class MinionProject {
         int leerePlaetzeRechts = 0;                 // Anzahl leerer Plätze rechts von Norbert
 
         int auslosungBeginner;                      // Auslosung des zu startenden Spielers
+
         int aktiverSpieler;                         // Zuweisung des aktuellen Spielers
         int computer;                               // Spieler "Computer"
         int mensch;                                 // Spieler "Mensch"
-        boolean gameover = false;
+
+        boolean gameOver = false;
+
         char seitenWahl;                            // 'r' oder 'l' für die Wahl der Seite
         int computerSeitenWahl;
         int anzahlGewaehlteMinions;                 // Anzahl der gewählten Minions 1, 2 oder 3
 
-        int minionCounterMensch = 0;
-        int minionCounterComputer = 0;
+        int minionCounterMensch = 0;                // Minion-Counter für den Spieler
+        int minionCounterComputer = 0;              // Minion-Counter für den Computer
         int winner = 1;
 
 
@@ -48,7 +51,7 @@ public class MinionProject {
         belegtePlaetzeRechts = anzahlMinions - norbert;                                     // berechnet die Plätze auf der rechten Seite von Norbert
 
 
-        System.out.println("\n!!  Das Spiel beginnt  !!\n");
+        System.out.println("\n\n!!  Das Spiel beginnt  !!\n");
         System.out.println("Norbert wurde folgende Position zufällig zugewiesen: " + norbert + "\n");
 
 
@@ -110,9 +113,9 @@ public class MinionProject {
         Scanner scanner = new Scanner(System.in);
 
 
-        while (!gameover) {
+        while (!gameOver) {
 
-            System.out.println("\n\n================================================\n\n");
+            System.out.println("\n\n\n================================================\n\n");
 
             if (aktiverSpieler == mensch) {
 
@@ -150,6 +153,7 @@ public class MinionProject {
                 anzahlGewaehlteMinions = ((int) (Math.random() * 3) + 1);
 
             }
+
 
             System.out.println("");
 
@@ -190,10 +194,12 @@ public class MinionProject {
                 }
             }
 
+
             // belegte Plätze links von Norbert darstellen
             for (int i = 1; i <= belegtePlaetzeLinks; i++) {
                 System.out.print(" M ");
             }
+
 
             // Norbert
             if (seitenWahl == 'l') {
@@ -210,10 +216,12 @@ public class MinionProject {
                 }
             }
 
+
             // belegte Plätze rechts von Norbert darstellen
             for (int i = 1; i <= belegtePlaetzeRechts; i++) {
                 System.out.print(" M ");
             }
+
 
             // leere Plätze rechts von Norbert darstellen
             for (int i = 1; i <= leerePlaetzeRechts; i++) {
@@ -229,29 +237,32 @@ public class MinionProject {
         // ------------------------------------------------------------------------------------------
         //
         //      Überprüfen, ob Norbert gewählt wurde und somit das Spiel verloren ist
+        //          -> gameOver wird gleich "true" gesetzt
         //
         // ------------------------------------------------------------------------------------------
 
 
             if ((seitenWahl == 'l' && norbert <= leerePlaetzeLinks) || (seitenWahl == 'r' && anzahlMinions - norbert <= leerePlaetzeRechts)) {
 
-                System.out.println("\n\n================================================\n\n");
+                System.out.println("\n\n\n================================================\n\n");
 
                 if (aktiverSpieler == 1) {
                     System.out.println("!!  Du hast verloren, da du Norbert ins Team gewählt hast.  !!\n");
                 } else {
                     System.out.println("!!  Du hast gewonnen, da der Computer Norbert ins Team gewählt hat.  !!\n");
                 }
-                gameover = true;
+                gameOver = true;
             }
 
-            // Minion zählen
+
+            // Minion zählen pro Team
 
             if (aktiverSpieler == 1) {
                 minionCounterMensch = minionCounterMensch + anzahlGewaehlteMinions;
             } else {
                 minionCounterComputer = minionCounterComputer + anzahlGewaehlteMinions;
             }
+
 
 
         // ------------------------------------------------------------------------------------------
@@ -262,22 +273,19 @@ public class MinionProject {
 
 
             if (aktiverSpieler == mensch) {
-
                 aktiverSpieler = computer;
-
             } else {
-
                 aktiverSpieler = mensch;
-
             }
 
-        } // while
+
+        } // end while
 
 
 
         // ------------------------------------------------------------------------------------------
         //
-        //      Ausgabe nach Beendigung des Spiels
+        //      Ausgabe nach Beendigung der Spiel-Schleife
         //
         // ------------------------------------------------------------------------------------------
 
@@ -292,7 +300,7 @@ public class MinionProject {
         }
 
 
-    }  // main method
+    }  // end main method
 
 
-} // class
+} // end class
