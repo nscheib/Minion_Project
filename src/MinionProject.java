@@ -8,7 +8,7 @@ public class MinionProject {
 
         // ------------------------------------------------------------------------------------------
         //
-        // Variablen deklarieren
+        //      Variablen deklarieren
         //
         // ------------------------------------------------------------------------------------------
 
@@ -184,7 +184,7 @@ public class MinionProject {
 
             // ------------------------------------------------------------------------------------------
             //
-            // Überprüfen, ob Norbert gewählt wurde und somit das Spiel verloren ist
+            //      Überprüfen, ob Norbert gewählt wurde und somit das Spiel verloren ist
             //
             // ------------------------------------------------------------------------------------------
 
