@@ -109,10 +109,11 @@ public class MinionProject {
         //
         // ------------------------------------------------------------------------------------------
 
-
+        // initialisiere den Scanner
         Scanner scanner = new Scanner(System.in);
 
 
+        // führe die Schleife so lange aus, bis gameOver = true ist
         while (!gameOver) {
 
             System.out.println("\n\n\n================================================\n\n");
@@ -136,6 +137,7 @@ public class MinionProject {
                 } while (anzahlGewaehlteMinions > 3 || anzahlGewaehlteMinions < 1);
 
 
+            // aktiverSpieler = Computer
             } else {
 
                 System.out.println("Der Computer ist am Zug.");
@@ -149,7 +151,7 @@ public class MinionProject {
                     seitenWahl = 'r';
                 }
 
-                // Anzahl der Minions zufällig wählen
+                // Anzahl der Minion zufällig wählen
                 anzahlGewaehlteMinions = ((int) (Math.random() * 3) + 1);
 
             }
@@ -157,6 +159,7 @@ public class MinionProject {
 
             System.out.println("");
 
+            // Ausgabe der zufälligen Seitenwahl und Anzahl der gewählten Minion
             if (aktiverSpieler == computer) {
                 System.out.print("Der Computer wählt " + anzahlGewaehlteMinions + " Minion von ");
 
@@ -175,7 +178,7 @@ public class MinionProject {
         //
         // ------------------------------------------------------------------------------------------
 
-
+            // 'leere Plätze' hinzufügen und 'belegte Plätze' jeweils abziehen
             if (seitenWahl == 'l') {
                 leerePlaetzeLinks = leerePlaetzeLinks + anzahlGewaehlteMinions;
                 belegtePlaetzeLinks = belegtePlaetzeLinks - anzahlGewaehlteMinions;
@@ -201,7 +204,7 @@ public class MinionProject {
             }
 
 
-            // Norbert
+            // Norbert darstellen als "0", wenn er noch nicht gewählt wurde, ansonsten als "="
             if (seitenWahl == 'l') {
                 if (leerePlaetzeLinks < norbert) {
                     System.out.print(" O ");
@@ -237,11 +240,10 @@ public class MinionProject {
         // ------------------------------------------------------------------------------------------
         //
         //      Überprüfen, ob Norbert gewählt wurde und somit das Spiel verloren ist
-        //          -> gameOver wird gleich "true" gesetzt, wenn ein Spieler Norbert gewählt hat
         //
         // ------------------------------------------------------------------------------------------
 
-
+            // gameOver wird gleich "true" gesetzt, wenn ein Spieler Norbert gewählt hat
             if ((seitenWahl == 'l' && norbert <= leerePlaetzeLinks) || (seitenWahl == 'r' && anzahlMinions - norbert <= leerePlaetzeRechts)) {
 
                 System.out.println("\n\n\n================================================\n\n");
@@ -256,7 +258,6 @@ public class MinionProject {
 
 
             // Minion zählen pro Team
-
             if (aktiverSpieler == 1) {
                 minionCounterMensch = minionCounterMensch + anzahlGewaehlteMinions;
             } else {
@@ -267,7 +268,7 @@ public class MinionProject {
 
         // ------------------------------------------------------------------------------------------
         //
-        //      Spielerwechsel
+        //      Spielerwechsel, damit beim nächsten Durchlauf der Schleife der andere Spieler dran ist
         //
         // ------------------------------------------------------------------------------------------
 
