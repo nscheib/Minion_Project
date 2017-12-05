@@ -2,7 +2,6 @@ import java.util.*;
 
 public class MinionProject {
 
-
     public static void main(String[] args) {
 
 
@@ -15,22 +14,22 @@ public class MinionProject {
 
         int anzahlMinions = 11;                     // Anzahl der gesamten Minions im Spiel
 
-        int leerePlaetzeLinks = 0;                  // Anzahl leerer Plätze vor Norbert
-        int belegtePlaetzeLinks;                    // Anzahl belegter Plätze vor Norbert
+        int leerePlaetzeLinks = 0;                  // Anzahl leerer Plätze links von Norbert
+        int belegtePlaetzeLinks;                    // Anzahl belegter Plätze links von Norbert
         int norbert;                                // Norberts Position
-        int belegtePlaetzeRechts;                   // Anzahl belegter Plätze hinter Norbert
-        int leerePlaetzeRechts = 0;                 // Anzahl leerer Plätze hinter Norbert
+        int belegtePlaetzeRechts;                   // Anzahl belegter Plätze rechts von Norbert
+        int leerePlaetzeRechts = 0;                 // Anzahl leerer Plätze rechts von Norbert
 
-        int auslosungBeginner;                      // Auslosung des zu startenden Spielers: random 1 oder 2
+        int auslosungBeginner;                      // Auslosung des zu startenden Spielers
         int aktiverSpieler;                         // Zuweisung des aktuellen Spielers
-        int computer;
-        int spieler;
+        int computer;                               // Spieler "Computer"
+        int mensch;                                 // Spieler "Mensch"
         boolean gameover = false;
         char seitenWahl;                            // 'r' oder 'l' für die Wahl der Seite
         int computerSeitenWahl;
         int anzahlGewaehlteMinions;                 // Anzahl der gewählten Minions 1, 2 oder 3
 
-        int minionCounterSpieler = 0;
+        int minionCounterMensch = 0;
         int minionCounterComputer = 0;
         int winner = 1;
 
@@ -84,16 +83,16 @@ public class MinionProject {
 
 
         auslosungBeginner = ((int) (Math.random() * 2) + 1);
-        spieler = 1;
+        mensch = 1;
         computer = 2;
 
         if (auslosungBeginner == 1) {
-            aktiverSpieler = spieler;
+            aktiverSpieler = mensch;
         } else {
             aktiverSpieler = computer;
         }
 
-        if (aktiverSpieler == spieler) {
+        if (aktiverSpieler == mensch) {
             System.out.println("\n\nDie Auslosung hat ergeben, dass Du beginnst!");
         } else {
             System.out.println("\n\nDie Auslosung hat ergeben, dass der Computer beginnt!");
@@ -115,7 +114,7 @@ public class MinionProject {
 
             System.out.println("\n\n================================================\n\n");
 
-            if (aktiverSpieler == spieler) {
+            if (aktiverSpieler == mensch) {
 
                 System.out.println("Du bist dran.");
 
@@ -249,7 +248,7 @@ public class MinionProject {
             // Minion zählen
 
             if (aktiverSpieler == 1) {
-                minionCounterSpieler = minionCounterSpieler + anzahlGewaehlteMinions;
+                minionCounterMensch = minionCounterMensch + anzahlGewaehlteMinions;
             } else {
                 minionCounterComputer = minionCounterComputer + anzahlGewaehlteMinions;
             }
@@ -262,20 +261,28 @@ public class MinionProject {
         // ------------------------------------------------------------------------------------------
 
 
-            if (aktiverSpieler == spieler) {
+            if (aktiverSpieler == mensch) {
 
                 aktiverSpieler = computer;
 
             } else {
 
-                aktiverSpieler = spieler;
+                aktiverSpieler = mensch;
 
             }
 
         } // while
 
 
-        System.out.println("Du hast insgesamt " + minionCounterSpieler + " Minion in dein Team gewählt.");
+
+        // ------------------------------------------------------------------------------------------
+        //
+        //      Ausgabe nach Beendigung des Spiels
+        //
+        // ------------------------------------------------------------------------------------------
+
+
+        System.out.println("Du hast insgesamt " + minionCounterMensch + " Minion in dein Team gewählt.");
         System.out.println("Der Computer hat " + minionCounterComputer + " Minion in sein Team gewählt.");
 
         if (aktiverSpieler == winner) {
