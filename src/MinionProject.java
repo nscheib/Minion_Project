@@ -109,7 +109,6 @@ public class MinionProject {
 
             if (aktiverSpieler == spieler) {
 
-                // System.out.println("\n\nAktiver Spieler: " + aktiverSpieler);
                 System.out.println("Du bist dran.");
 
 
@@ -129,7 +128,6 @@ public class MinionProject {
 
             } else {
 
-                // System.out.println("\n\nAktiver Spieler: " + aktiverSpieler);
                 System.out.println("Der Computer ist am Zug.");
 
 
@@ -148,7 +146,15 @@ public class MinionProject {
 
             System.out.println("");
 
+            if (aktiverSpieler == computer) {
+                System.out.print("Der Computer wählt " + anzahlGewaehlteMinions + " Minion von ");
 
+                if (seitenWahl == 'l') {
+                    System.out.print("links.\n\n");
+                } else {
+                    System.out.print("rechts.\n\n");
+                }
+            }
 
             // ------------------------------------------------------------------------------------------
             //
@@ -210,9 +216,6 @@ public class MinionProject {
             }
 
 
-            System.out.print("\n\nSeite: " + seitenWahl + "\nAnzahl der Minions: " + anzahlGewaehlteMinions);
-
-
 
             // ------------------------------------------------------------------------------------------
             //
@@ -272,22 +275,6 @@ public class MinionProject {
         }
 
     }  // main method
-
-
-//    for (int i = 1; i <= leerePlaetzeLinks; i++) {
-//        if (i >= norbert) {
-//            System.out.print("");
-//        } else {
-//            System.out.print("- ");
-//        }
-//    }
-
-//    // Norbert
-//            if (leerePlaetzeLinks < norbert && leerePlaetzeRechts < anzahlMinions - norbert) {
-//        System.out.print("O ");
-//    } else {
-//        System.out.print("= ");
-//    }
 
 
 } // class
