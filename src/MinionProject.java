@@ -237,7 +237,7 @@ public class MinionProject {
         // ------------------------------------------------------------------------------------------
         //
         //      Überprüfen, ob Norbert gewählt wurde und somit das Spiel verloren ist
-        //          -> gameOver wird gleich "true" gesetzt
+        //          -> gameOver wird gleich "true" gesetzt, wenn ein Spieler Norbert gewählt hat
         //
         // ------------------------------------------------------------------------------------------
 
