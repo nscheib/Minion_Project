@@ -34,7 +34,7 @@ public class MinionProject {
         int minionCounterComputer = 0;
         int winner = 1;
 
-        System.out.println("\n!!  Das Spiel beginnt  !!\n");
+
 
         // ------------------------------------------------------------------------------------------
         //
@@ -49,11 +49,17 @@ public class MinionProject {
         belegtePlaetzeRechts = anzahlMinions - norbert;                                     // berechnet die Plätze auf der rechten Seite von Norbert
 
 
+        System.out.println("\n!!  Das Spiel beginnt  !!\n");
         System.out.println("Norbert wurde folgende Position zufällig zugewiesen: " + norbert + "\n");
 
 
 
-        // Anfangspositionen der Minions "graphisch" darstellen
+        // ------------------------------------------------------------------------------------------
+        //
+        //      Anfangspositionen der Minions "graphisch" darstellen
+        //
+        // ------------------------------------------------------------------------------------------
+
 
         // Minions links von Norbert
         for (int i = 1; i <= belegtePlaetzeLinks; i++) {
@@ -92,6 +98,8 @@ public class MinionProject {
         } else {
             System.out.println("\n\nDie Auslosung hat ergeben, dass der Computer beginnt!");
         }
+
+
 
         // ------------------------------------------------------------------------------------------
         //
@@ -156,11 +164,13 @@ public class MinionProject {
                 }
             }
 
-            // ------------------------------------------------------------------------------------------
-            //
-            //      Ausgabe der neuen Positionen der Minions
-            //
-            // ------------------------------------------------------------------------------------------
+
+
+        // ------------------------------------------------------------------------------------------
+        //
+        //      Ausgabe der neuen Positionen der Minions
+        //
+        // ------------------------------------------------------------------------------------------
 
 
             if (seitenWahl == 'l') {
@@ -217,11 +227,11 @@ public class MinionProject {
 
 
 
-            // ------------------------------------------------------------------------------------------
-            //
-            //      Überprüfen, ob Norbert gewählt wurde und somit das Spiel verloren ist
-            //
-            // ------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
+        //
+        //      Überprüfen, ob Norbert gewählt wurde und somit das Spiel verloren ist
+        //
+        // ------------------------------------------------------------------------------------------
 
 
             if ((seitenWahl == 'l' && norbert <= leerePlaetzeLinks) || (seitenWahl == 'r' && anzahlMinions - norbert <= leerePlaetzeRechts)) {
@@ -245,11 +255,11 @@ public class MinionProject {
             }
 
 
-            // ------------------------------------------------------------------------------------------
-            //
-            //      Spielerwechsel
-            //
-            // ------------------------------------------------------------------------------------------
+        // ------------------------------------------------------------------------------------------
+        //
+        //      Spielerwechsel
+        //
+        // ------------------------------------------------------------------------------------------
 
 
             if (aktiverSpieler == spieler) {
@@ -273,6 +283,7 @@ public class MinionProject {
         } else {
             System.out.println("Norbert ist leider in deinem Team.");
         }
+
 
     }  // main method
 
