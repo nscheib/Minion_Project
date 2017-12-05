@@ -51,6 +51,37 @@ public class MinionSpiel {
         belegtePlaetzeRechts = anzahlMinions - norbert;                                     // berechnet die Plätze auf der rechten Seite von Norbert
 
 
+
+        System.out.println(
+                "\n\n########################################################################################################################### \n " +
+                "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # \n " +
+                "# # #                                                                                                                 # # # \n " +
+                "# # #     #########            ####         #####       ##         ####         #####       ##         ####           # # # \n " +
+                "# # #     ###     ##          ######        ### ##      ##        ######        ### ##      ##        ######          # # # \n " +
+                "# # #     ###    ###         ###   ##       ###  ##     ##       ###   ##       ###  ##     ##       ###   ##         # # # \n " +
+                "# # #     #########         ###     ##      ###   ##    ##      ###     ##      ###   ##    ##      ###     ##        # # # \n " +
+                "# # #     ###      ##      ####      ##     ###    ##   ##     ####      ##     ###    ##   ##     ####      ##       # # # \n " +
+                "# # #     ###      ###    ### # # # # ##    ###     ##  ##    ### # # # # ##    ###     ##  ##    ### # # # # ##      # # # \n " +
+                "# # #     ###     ####   ####         ###   ###      ## ##   ####         ###   ###      ## ##   ####         ###     # # # \n " +
+                "# # #     ###########   ####           ###  ###       ####  ####           ###  ###       ####  ####           ###    # # # \n " +
+                "# # #                                                                                                                 # # # \n " +
+                "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # \n " +
+                "########################################################################################################################### \n " +
+                "                                                                                                                            \n " +
+                "---------------------------------------------------------- RULES ---------------------------------------------------------- \n " +
+                "                                                                                                                            \n " +
+                "Bitte lies dir die Spieleanleitung genau durch. Das Spiel 'Banana' ist ein einfaches strategisches Spiel, bei dem es darum  \n " +
+                "geht, ein Team aus Minion zu wählen. Einer der Minion ist Norbert, er ist derjenige, den keiner in seinem Team haben        \n " +
+                "möchte, denn mit Norbert ist die Niederlage sicher!                                                                         \n " +
+                "                                                                                                                            \n " +
+                "Zu Beginn wird zufällig ermittelt, wer anfängt, Du oder der Computer. Bist du am Zug, wähle aus, von welcher Seite du einen \n " +
+                "Minion möchtest und gib dafür für rechts 'r' oder für links 'l' ein. Danach wirst du aufgefordert die Anzahl der            \n " +
+                "Minion anzugeben, welche du gern im Team hättest. Du kannst zwischen einem, zwei oder drei Minion wählen, aber nur von      \n " +
+                "einer Seite aus!                                                                                                            \n " +
+                "Wir wünschen dir viel Spaß, dein Banana-Team.                                                                               \n " +
+                "                                                                                                                            \n " +
+                "---------------------------------------------------------- RULES ---------------------------------------------------------- \n " );
+
         System.out.println("\n\n!!  Das Spiel beginnt  !!\n");
         System.out.println("Norbert wurde folgende Position zufällig zugewiesen: " + norbert + "\n");
 
