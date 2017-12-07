@@ -57,7 +57,7 @@ public class MinionSpiel {
         // ------------------------------------------------------------------------------------------
 
 
-        norbert = 4;//((int) (Math.random() * anzahlMinions) + 1);                              // weist Norbert einen zufälligen Wert zwischen 1 und 11 zu
+        norbert = ((int) (Math.random() * anzahlMinions) + 1);                              // weist Norbert einen zufälligen Wert zwischen 1 und 11 zu
 
         belegtePlaetzeLinks = norbert - 1;                                                  // berechnet die Plätze auf der linken Seite von Norbert
         belegtePlaetzeRechts = anzahlMinions - norbert;                                     // berechnet die Plätze auf der rechten Seite von Norbert
@@ -313,8 +313,6 @@ public class MinionSpiel {
 
 
 
-
-
 // ----------------------------------------------------------------------------------------------------------------
 //
 //      Methods
@@ -340,6 +338,13 @@ public class MinionSpiel {
             System.out.print(" M ");
         }
 
+        // leere Plaätze links neben Norbert, wenn von rechts kommend
+        if (anzahlMinions - leerePlaetzeRechts + 1 < norbert && belegtePlaetzeLinks > 0) {
+            for (int i = anzahlMinions - leerePlaetzeRechts; i < norbert; i++)
+                belegtePlaetzeLinks = belegtePlaetzeLinks - 1;
+            leerePlaetzeLinks = leerePlaetzeLinks + 1;
+            System.out.print(" - ");
+        }
 
         // Norbert darstellen als "0", wenn er noch nicht gewählt wurde, ansonsten als "="
         if (seitenWahl == 'l') {
@@ -356,7 +361,12 @@ public class MinionSpiel {
             }
         }
 
-
+        // leere Plaätze rechts neben Norbert, wenn von links kommend
+        if (leerePlaetzeLinks > norbert && belegtePlaetzeRechts > 0) {
+            for (int i = norbert; i < leerePlaetzeLinks; i++)
+                belegtePlaetzeRechts = belegtePlaetzeRechts - 1;
+            System.out.print(" - ");
+        }
 
         // belegte Plätze rechts von Norbert darstellen
         for (int i = 1; i <= belegtePlaetzeRechts; i++) {
