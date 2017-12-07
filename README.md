@@ -42,10 +42,10 @@ status, add, commit, push:
 
 - um lokale Änderungen zu pushen:
   - `git status` untracked file anzeigen (werden in rot dargestellt), untracked = bearbeitete files
-  - `git add file_name` untracked files hinzufügen
+  - `git add [file_name]` untracked files hinzufügen
   - `git commit -m"Commit message here"` hinzugefügte files committen
   - `git push` commits pushen
-  - `git push -u remote branch_name` falls branch noch nicht remote existiert
+  - `git push -u remote [branch_name]` falls branch noch nicht remote existiert
                 
 pull:
 
