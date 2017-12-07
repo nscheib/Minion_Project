@@ -36,7 +36,7 @@ public class MinionSpiel {
 
         boolean gameOver = false;
 
-        char seitenWahl = 'l';                      // 'r' oder 'l' für die Wahl der Seite
+        char seitenWahl = 'q';                      // 'r' oder 'l' für die Wahl der Seite
         int computerSeitenWahl;
         int anzahlGewaehlteMinions;                 // Anzahl der gewählten Minions 1, 2 oder 3
 
@@ -57,7 +57,7 @@ public class MinionSpiel {
         // ------------------------------------------------------------------------------------------
 
 
-        norbert = ((int) (Math.random() * anzahlMinions) + 1);                              // weist Norbert einen zufälligen Wert zwischen 1 und 11 zu
+        norbert = 4;//((int) (Math.random() * anzahlMinions) + 1);                              // weist Norbert einen zufälligen Wert zwischen 1 und 11 zu
 
         belegtePlaetzeLinks = norbert - 1;                                                  // berechnet die Plätze auf der linken Seite von Norbert
         belegtePlaetzeRechts = anzahlMinions - norbert;                                     // berechnet die Plätze auf der rechten Seite von Norbert
@@ -248,7 +248,8 @@ public class MinionSpiel {
         // ------------------------------------------------------------------------------------------
 
             // gameOver wird gleich "true" gesetzt, wenn ein Spieler Norbert gewählt hat
-            if ((seitenWahl == 'l' && norbert <= leerePlaetzeLinks) || (seitenWahl == 'r' && anzahlMinions - norbert <= leerePlaetzeRechts)) {
+
+            if ((seitenWahl == 'l' && norbert <= leerePlaetzeLinks) || (seitenWahl == 'r' && norbert > anzahlMinions - leerePlaetzeRechts)) {
 
                 System.out.println("\n\n\n================================================\n\n");
 
@@ -347,13 +348,14 @@ public class MinionSpiel {
             } else {
                 System.out.print(" = ");
             }
-        } else {
-            if (leerePlaetzeRechts < anzahlMinions - norbert) {
+        } else  {
+            if (leerePlaetzeRechts <= anzahlMinions - norbert) {
                 System.out.print(" O ");
             } else {
                 System.out.print(" = ");
             }
         }
+
 
 
         // belegte Plätze rechts von Norbert darstellen
