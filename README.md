@@ -33,20 +33,20 @@ ODER: in IntelliJ IDEA:  VCS  ->  Git  ->  clone...  ->  `git@github.com:Smorlor
 
 branch:
 
-- lokale Branches anzeigen:  `git branch`
-- alle Branches anzeigen (lokal und remote):  `git branch -a` 
-- branch wechseln (lokal):  `git checkout branch_name`
+- `git branch` lokale Branches anzeigen
+- `git branch -a` alle Branches anzeigen (lokal und remote) 
+- `git checkout branch_name` branch wechseln (lokal)
     
  
 status, add, commit, push:
 
 - um lokale Änderungen zu pushen:
-  - untracked file anzeigen:  `git status`  (untracked files in rot dargestellt)
-  - untracked files hinzufügen:  `git add file_name`    
-  - hinzugefügte files committen:  `git commit -m"Commit message here"`
-  - commits pushen:  `git push`
-    - falls branch noch nicht remote existiert: `git push -u remote branch_name`
+  - `git status` untracked file anzeigen (werden in rot dargestellt), untracked = bearbeitete files
+  - `git add file_name` untracked files hinzufügen
+  - `git commit -m"Commit message here"` hinzugefügte files committen
+  - `git push` commits pushen
+  - `git push -u remote branch_name` falls branch noch nicht remote existiert
                 
 pull:
 
-  - Projekt updaten:  `git pull`
+  - `git pull` Projekt updaten
