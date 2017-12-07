@@ -12,9 +12,12 @@ public class MinionSpiel {
         // ------------------------------------------------------------------------------------------
 
 
-        int anzahlMinions = 11;                     // Anzahl der gesamten Minions im Spiel
-        int maximalWaehlbareMinions = 3;
+        // diese beiden Variablen sind anpassbar:
 
+        int anzahlMinions = 11;                     // Anzahl der gesamten Minions im Spiel
+        int maximalWaehlbareMinions = 3;            // Anzahl der Minion, die man pro Runde höchstens wählen darf
+
+        //----------
 
 
         int leerePlaetzeLinks = 0;                  // Anzahl leerer Plätze links von Norbert
