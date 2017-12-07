@@ -24,36 +24,29 @@
 
 ###  Git / Github
 
-Projekt clonen:
+clone:
 
 `git clone git@github.com:Smorlord/Minion_Project.git`
 
 ODER: in IntelliJ IDEA:  VCS  ->  Git  ->  clone...  ->  `git@github.com:Smorlord/Minion_Project.git`
 
 
-Branches:
+branch:
 
-    -  lokale Branches anzeigen:  `git branch`
-    
-    -  alle Branches anzeigen (lokal und remote):  `git branch -a`
-    
-    -  branch wechseln (lokal):  `git checkout branch_name`
+- lokale Branches anzeigen:  `git branch`
+- alle Branches anzeigen (lokal und remote):  `git branch -a` 
+- branch wechseln (lokal):  `git checkout branch_name`
     
  
 status, add, commit, push:
 
-    -  um lokale Änderungen zu pushen:
-    
-        -  untracked file anzeigen:  `git status`  (untracked files in rot dargestellt)
-        
-        -  untracked files hinzufügen:  `git add file_name`
-        
-        -  hinzugefügte files committen:  `git commit -m"Commit message here"`
-        
-        -  commits pushen:  `git push`
-            -> falls branch noch nicht remote existiert:
-                `git push -u remote branch_name`
+- um lokale Änderungen zu pushen:
+  - untracked file anzeigen:  `git status`  (untracked files in rot dargestellt)
+  - untracked files hinzufügen:  `git add file_name`    
+  - hinzugefügte files committen:  `git commit -m"Commit message here"`
+  - commits pushen:  `git push`
+    - falls branch noch nicht remote existiert: `git push -u remote branch_name`
                 
 pull:
 
-    -  Projekt updaten:  `git pull`
+  - Projekt updaten:  `git pull`
