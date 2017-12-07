@@ -105,8 +105,7 @@ public class MinionSpiel {
 
         System.out.println(" ------------------------------------------- Gib zum starten des Spiels 's' ein -------------------------------------------");
 
-
-        while (spielStartEingabe){
+        while (spielStartEingabe) {
             if (scanner.next().charAt(0) == 's') {
                 spielStartEingabe = false;
             } else {
@@ -182,7 +181,7 @@ public class MinionSpiel {
 
                 // Anzahl der Minions wählen
                 do {
-                    System.out.print("\nWie viele Minions möchtest du wählen? \nGib 1, 2 oder 3 ein: ");
+                    System.out.print("\nWie viele Minions möchtest du wählen? \nDu kannst 1 - " + maximalWaehlbareMinions + " Minions wählen: ");
                     anzahlGewaehlteMinions = scanner.nextInt();
                 } while (anzahlGewaehlteMinions > maximalWaehlbareMinions || anzahlGewaehlteMinions < 1);
 
