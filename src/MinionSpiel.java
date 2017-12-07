@@ -13,6 +13,9 @@ public class MinionSpiel {
 
 
         int anzahlMinions = 11;                     // Anzahl der gesamten Minions im Spiel
+        int maximalWaehlbareMinions = 3;
+
+
 
         int leerePlaetzeLinks = 0;                  // Anzahl leerer Plätze links von Norbert
         int belegtePlaetzeLinks;                    // Anzahl belegter Plätze links von Norbert
@@ -97,10 +100,11 @@ public class MinionSpiel {
         // ------------------------------------------------------------------------------------------
 
 
-        System.out.println(" ------------------------------------------- Gebe zum starten des Spiels 's' ein -------------------------------------------");
+        System.out.println(" ------------------------------------------- Gib zum starten des Spiels 's' ein -------------------------------------------");
+
 
         while (spielStartEingabe){
-            if (scanner.next().charAt(0) == 's'){
+            if (scanner.next().charAt(0) == 's') {
                 spielStartEingabe = false;
             } else {
                 spielStartEingabe = true;
@@ -177,7 +181,7 @@ public class MinionSpiel {
                 do {
                     System.out.print("\nWie viele Minions möchtest du wählen? \nGib 1, 2 oder 3 ein: ");
                     anzahlGewaehlteMinions = scanner.nextInt();
-                } while (anzahlGewaehlteMinions > 3 || anzahlGewaehlteMinions < 1);
+                } while (anzahlGewaehlteMinions > maximalWaehlbareMinions || anzahlGewaehlteMinions < 1);
 
 
             // aktiverSpieler = Computer
@@ -195,7 +199,7 @@ public class MinionSpiel {
                 }
 
                 // Anzahl der Minion zufällig wählen
-                anzahlGewaehlteMinions = ((int) (Math.random() * 3) + 1);
+                anzahlGewaehlteMinions = ((int) (Math.random() * maximalWaehlbareMinions) + 1);
 
             }
 
