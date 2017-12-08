@@ -36,7 +36,7 @@ public class MinionSpiel {
 
         boolean gameOver = false;
 
-        char seitenWahl = 'q';                      // 'r' oder 'l' für die Wahl der Seite
+        char seitenWahl = '0';                      // 'r' oder 'l' für die Wahl der Seite
         int computerSeitenWahl;
         int anzahlGewaehlteMinions = 0;             // Anzahl der gewählten Minions 1, 2 oder 3
 
