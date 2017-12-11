@@ -31,7 +31,7 @@ public class MinionSpiel {
 
         boolean gameOver = false;
 
-        char seitenWahl;                            // 'r' oder 'l' für die Wahl der Seite
+        char seitenWahl = '0';                            // 'r' oder 'l' für die Wahl der Seite
         int computerSeitenWahl;
         int anzahlGewaehlteMinions;                 // Anzahl der gewählten Minions 1, 2 oder 3
 
@@ -52,7 +52,7 @@ public class MinionSpiel {
 
 
         System.out.println(
-                "\n\n########################################################################################################################### \n " +
+                "\n\n############################################################################################################################ \n " +
                         "# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # \n " +
                         "# # #                                                                                                                 # # # \n " +
                         "# # #     #########            ####         #####       ##         ####         #####       ##         ####           # # # \n " +
@@ -89,18 +89,7 @@ public class MinionSpiel {
         // Anfangspositionen der Minions "graphisch" darstellen
 
 
-        // Minions links von Norbert
-        for (int i = 1; i <= belegtePlaetzeLinks; i++) {
-            System.out.print(" M ");
-        }
-
-        // Norbert
-        System.out.print(" O ");
-
-        // Minion rechts von Norbert
-        for (int i = 1; i <= belegtePlaetzeRechts; i++) {
-            System.out.print(" M ");
-        }
+        printPositions(leerePlaetzeLinks, leerePlaetzeRechts, norbert, belegtePlaetzeLinks, belegtePlaetzeRechts, ANZAHLMINIONS, seitenWahl, LINKS);
 
 
 
@@ -141,20 +130,26 @@ public class MinionSpiel {
 
 
                 // Seite wählen
-                do {
-                    System.out.print("\nVon welcher Seite möchtest du deine Minions wählen? \nGib  " + LINKS + "  für links oder " + RECHTS + " für rechts ein: ");
+                System.out.print("\nVon welcher Seite möchtest du deine Minions wählen? \nGib " + LINKS + " für links oder " + RECHTS + " für rechts ein: ");
+                seitenWahl = scanner.next().charAt(0);
+
+                while (seitenWahl != RECHTS && seitenWahl != LINKS) {
+                    System.out.print("\nFalsche Eingabe! \nGib " + LINKS + " für links oder " + RECHTS + " für rechts ein: ");
                     seitenWahl = scanner.next().charAt(0);
-                } while (seitenWahl != RECHTS && seitenWahl != LINKS);
+                }
 
 
                 // Anzahl der Minions wählen
-                do {
-                    System.out.print("\nWie viele Minions möchtest du wählen? \nGib 1, 2 oder 3 ein: ");
+                System.out.print("\nWie viele Minions möchtest du wählen? \nGib 1, 2 oder 3 ein: ");
+                anzahlGewaehlteMinions = scanner.nextInt();
+
+                while (anzahlGewaehlteMinions > 3 || anzahlGewaehlteMinions < 1) {
+                    System.out.print("\nFalsche Eingabe! \nGib 1, 2 oder 3 ein: ");
                     anzahlGewaehlteMinions = scanner.nextInt();
-                } while (anzahlGewaehlteMinions > 3 || anzahlGewaehlteMinions < 1);
+                }
 
 
-                // aktiverSpieler = Computer
+            // aktiverSpieler = Computer
             } else {
 
                 System.out.println("Der Computer ist am Zug.");
@@ -189,9 +184,6 @@ public class MinionSpiel {
 
 
 
-            // Ausgabe der neuen Positionen der Minions
-
-
             // 'leere Plätze' hinzufügen und 'belegte Plätze' jeweils abziehen
             if (seitenWahl == LINKS) {
                 leerePlaetzeLinks = leerePlaetzeLinks + anzahlGewaehlteMinions;
@@ -202,53 +194,9 @@ public class MinionSpiel {
             }
 
 
-            // leere Plätze links von Norbert darstellen
-            for (int i = 1; i <= leerePlaetzeLinks; i++) {
-                if (i >= norbert) {
-                    System.out.print("");
-                } else {
-                    System.out.print(" - ");
-                }
-            }
+            // Ausgabe der neuen Positionen der Minions
 
-
-            // belegte Plätze links von Norbert darstellen
-            for (int i = 1; i <= belegtePlaetzeLinks; i++) {
-                System.out.print(" M ");
-            }
-
-
-            // Norbert darstellen als "0", wenn er noch nicht gewählt wurde, ansonsten als "="
-            if (seitenWahl == LINKS) {
-                if (leerePlaetzeLinks < norbert) {
-                    System.out.print(" O ");
-                } else {
-                    System.out.print(" = ");
-                }
-            } else {
-                if (leerePlaetzeRechts < ANZAHLMINIONS - norbert) {
-                    System.out.print(" O ");
-                } else {
-                    System.out.print(" = ");
-                }
-            }
-
-
-            // belegte Plätze rechts von Norbert darstellen
-            for (int i = 1; i <= belegtePlaetzeRechts; i++) {
-                System.out.print(" M ");
-            }
-
-
-            // leere Plätze rechts von Norbert darstellen
-            for (int i = 1; i <= leerePlaetzeRechts; i++) {
-                if (i > ANZAHLMINIONS - norbert) {
-                    System.out.print("");
-                } else {
-                    System.out.print(" - ");
-                }
-            }
-
+            printPositions(leerePlaetzeLinks, leerePlaetzeRechts, norbert, belegtePlaetzeLinks, belegtePlaetzeRechts, ANZAHLMINIONS, seitenWahl, LINKS);
 
 
             // Überprüfen, ob Norbert gewählt wurde und somit das Spiel verloren ist
@@ -305,6 +253,60 @@ public class MinionSpiel {
 
 
     }  // end main method
+
+
+
+    private static void printPositions(int leerePlaetzeLinks, int leerePlaetzeRechts, int norbert, int belegtePlaetzeLinks, int belegtePlaetzeRechts, int ANZAHLMINIONS, char seitenWahl, char LINKS) {
+
+        // leere Plätze links von Norbert darstellen
+        for (int i = 1; i <= leerePlaetzeLinks; i++) {
+            if (i >= norbert) {
+                System.out.print("");
+            } else {
+                System.out.print(" - ");
+            }
+        }
+
+
+        // belegte Plätze links von Norbert darstellen
+        for (int i = 1; i <= belegtePlaetzeLinks; i++) {
+            System.out.print(" M ");
+        }
+
+
+        // Norbert darstellen als "0", wenn er noch nicht gewählt wurde, ansonsten als "="
+        if (seitenWahl == LINKS) {
+            if (leerePlaetzeLinks < norbert) {
+                System.out.print(" O ");
+            } else {
+                System.out.print(" = ");
+            }
+        } else {
+            if (leerePlaetzeRechts < ANZAHLMINIONS - norbert) {
+                System.out.print(" O ");
+            } else {
+                System.out.print(" = ");
+            }
+        }
+
+
+        // belegte Plätze rechts von Norbert darstellen
+        for (int i = 1; i <= belegtePlaetzeRechts; i++) {
+            System.out.print(" M ");
+        }
+
+
+        // leere Plätze rechts von Norbert darstellen
+        for (int i = 1; i <= leerePlaetzeRechts; i++) {
+            if (i > ANZAHLMINIONS - norbert) {
+                System.out.print("");
+            } else {
+                System.out.print(" - ");
+            }
+        }
+
+
+    } // end printPositions method
 
 
 } // end class
