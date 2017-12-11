@@ -36,6 +36,7 @@ branch:
 - `git branch` lokale Branches anzeigen
 - `git branch -a` alle Branches anzeigen (lokal und remote) 
 - `git checkout [branch_name]` branch wechseln (lokal)
+
     
  
 status, add, commit, push:
