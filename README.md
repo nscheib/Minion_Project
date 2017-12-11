@@ -7,7 +7,7 @@
 - 10 Minions und 1 Norbert
 - Random Position von Norbert
 - Random Beginner Pc/Spieler
-- Anzeige aller Positionen (M) inkl. Norbert(O)
+- Anzeige aller Positionen (M) inkl. Norbert (O)
 - Anzeige, welcher Spieler beginnt
 
 ##### Schleife:
