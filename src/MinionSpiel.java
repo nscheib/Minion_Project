@@ -33,7 +33,7 @@ public class MinionSpiel {
         char seitenWahl = '0';                      // 'r' oder 'l' für die Wahl der Seite
 
         int computerSeitenWahl;
-        int anzahlGewaehlteMinions;                 // Anzahl der gewählten Minions 1, 2 oder 3
+        int anzahlGewaehlteMinions = 0;                 // Anzahl der gewählten Minions 1, 2 oder 3
 
         int minionCounterMensch = 0;                // Minion-Counter für den Spieler
         int minionCounterComputer = 0;              // Minion-Counter für den Computer
@@ -206,8 +206,7 @@ public class MinionSpiel {
 
 
             // gameOver wird gleich "true" gesetzt, wenn ein Spieler Norbert gewählt hat
-            if ((seitenWahl == LINKS && norbert <= leerePlaetzeLinks) || (seitenWahl == RECHTS && ANZAHLMINIONS - norbert <= leerePlaetzeRechts)) {
-
+            if ((seitenWahl == LINKS && norbert <= leerePlaetzeLinks) || (seitenWahl == RECHTS && norbert > ANZAHLMINIONS - leerePlaetzeRechts)) {
 
                 System.out.println("\n\n\n================================================\n\n");
 
@@ -217,6 +216,7 @@ public class MinionSpiel {
                     System.out.println("!!  Du hast gewonnen, da der Computer Norbert ins Team gewählt hat.  !!\n");
                 }
                 gameOver = true;
+
             }
 
 
@@ -288,7 +288,7 @@ public class MinionSpiel {
 
         } else {
 
-            if (leerePlaetzeRechts < ANZAHLMINIONS - norbert) {
+            if (leerePlaetzeRechts <= ANZAHLMINIONS - norbert) {
                 System.out.print(" O ");
             } else {
                 System.out.print(" = ");
