@@ -13,7 +13,6 @@ public class MinionSpiel {
 
 
         final int ANZAHLMINIONS = 11;               // Anzahl der gesamten Minions im Spiel
-
         final int MENSCH = 1;                       // Spieler "Mensch"
         final int COMPUTER = 2;                     // Spieler "Computer"
         final char LINKS = 'l';                     // Linke Seite
@@ -33,7 +32,7 @@ public class MinionSpiel {
         char seitenWahl = '0';                      // 'r' oder 'l' für die Wahl der Seite
 
         int computerSeitenWahl;
-        int anzahlGewaehlteMinions = 0;                 // Anzahl der gewählten Minions 1, 2 oder 3
+        int anzahlGewaehlteMinions;                 // Anzahl der gewählten Minions 1, 2 oder 3
 
         int minionCounterMensch = 0;                // Minion-Counter für den Spieler
         int minionCounterComputer = 0;              // Minion-Counter für den Computer
