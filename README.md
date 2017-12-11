@@ -1,3 +1,6 @@
+!!! --->  Minion Spiel geht soweit wieder  <--- !!!
+-aktuelle Version auf Branch develop-
+
 # Minion_Spiel
 
 ### Programm
