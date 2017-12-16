@@ -4,13 +4,8 @@ public class MinionSpiel {
 
     public static void main(String[] args) {
 
-
-        // ------------------------------------------------------------------------------------------
-        //
-        //      Variablen deklarieren
-        //
-        // ------------------------------------------------------------------------------------------
-
+        
+        // Variablen deklarieren
 
         final int ANZAHLMINIONS = 11;               // Anzahl der gesamten Minions im Spiel
         final int MENSCH = 1;                       // Spieler "Mensch"
