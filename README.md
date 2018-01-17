@@ -49,7 +49,7 @@ status, add, commit, push:
   - `git add [file_name]` untracked files hinzufügen
   - `git commit -m"Commit message here"` hinzugefügte files committen
   - `git push` commits pushen
-  - `git push -u remote [branch_name]` falls branch noch nicht remote existiert
+  - `git push -u origin [branch_name]` falls branch noch nicht remote existiert
                 
 pull:
 
